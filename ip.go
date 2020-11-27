@@ -1,5 +1,9 @@
 package utils
 
+import (
+	"log"
+	"net"
+)
 
 func GetHostIP() string {
 	ifaces, err := net.Interfaces()
