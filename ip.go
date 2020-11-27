@@ -12,10 +12,10 @@ func GetHostIP() string {
 	}
 
 	for _, iface := range ifaces {
-		if iface.Flags&net.FlagUp == 0 {
+		if iface.Flags & net.FlagUp == 0 {
 			continue // interface down
 		}
-		if iface.Flags&net.FlagLoopback != 0 {
+		if iface.Flags & net.FlagLoopback != 0 {
 			continue // loopback interface
 		}
 		addrs, err := iface.Addrs()
