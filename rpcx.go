@@ -3,10 +3,11 @@ package utils
 import (
 	"fmt"
 	"github.com/rcrowley/go-metrics"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/shima-park/agollo"
 	"github.com/smallnest/rpcx/server"
 	"github.com/smallnest/rpcx/serverplugin"
-	"log"
 	"time"
 )
 
@@ -48,9 +49,12 @@ func AddConsulRegistryPlugin(s *server.Server, basePath, addr, consulAddr string
 
 	err := r.Start()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err).Msg("rpcx服务启动失败")
 	}
 
 	s.Plugins.Add(r)
+	log.Info().Dict("rpcxInfo", zerolog.Dict().
+		Str("basePath", basePath).Str("addr", addr).Str("consulAddr", consulAddr)).Msg("加载配置")
+
 }
 

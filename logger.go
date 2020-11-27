@@ -28,5 +28,4 @@ func SetupLog() {
 	}
 
 	zerolog.New(output).With().Timestamp().Logger()
-
 }
